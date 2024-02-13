@@ -39,7 +39,7 @@ def run_bigquery_query_with_template(project_id, dataset_id, function_name, temp
 project_id = 'manifest-canto-413823'
 
 # Replace 'your_dataset', 'your_function', 'your_template.sql', and 'your_query.sql' with your actual values
-dataset_id = 'your_dataset'
+dataset_id = 'udf'
 function_name = 'my_func'
 
 template_path = 'templates/sql_func.sql'
