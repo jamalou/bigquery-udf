@@ -41,6 +41,7 @@ project_id = 'manifest-canto-413823'
 # Replace 'your_dataset', 'your_function', 'your_template.sql', and 'your_query.sql' with your actual values
 dataset_id = 'your_dataset'
 function_name = 'my_func'
+
 template_path = 'templates/sql_func.sql'
 query_path = 'user_defined_functions/my_func.sql'
 
