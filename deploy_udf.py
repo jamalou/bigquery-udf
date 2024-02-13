@@ -6,6 +6,9 @@ def read_from_file(file_path):
         return file.read()
 
 def run_bigquery_query_with_template(project_id, dataset_id, function_name, template_path, query_path):
+    """
+    Fucntion to deploy a udf into bigquery
+    """
     # Create a BigQuery client
     client = bigquery.Client(project=project_id)
 
