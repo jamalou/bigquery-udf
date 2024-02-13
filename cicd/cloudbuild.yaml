@@ -1,18 +1,18 @@
 steps:
-- id: 'install requirements'
-  name: 'python:3.9'
-  entrypoint: 'python'
-  args: ['-m', 'pip', 'install', '-r', 'requirements.txt']
+  - id: 'install requirements'
+    name: 'python:3.9'
+    entrypoint: 'pip'
+    args: ['install', '-r', 'requirements.txt', '--user']
 
-- id: 'print installed packages'
-  name: 'python:3.9'
-  entrypoint: '/usr/local/bin/python'
-  args: ['-m', 'pip', 'list']
+  - id: 'print installed packages'
+    name: 'python:3.9'
+    entrypoint: '/usr/local/bin/python'
+    args: ['-m', 'pip', 'list']
 
-- id: 'deploy'
-  name: 'python:3.9'
-  entrypoint: 'python'
-  args: ['deploy_udf.py']
+  - id: 'deploy'
+    name: 'python:3.9'
+    entrypoint: 'python'
+    args: ['deploy_udf.py']
 
 # options:
 #   logging: CLOUD_LOGGING_ONLY
