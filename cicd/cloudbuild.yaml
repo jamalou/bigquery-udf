@@ -7,7 +7,7 @@ steps:
   - id: 'test'
     name: 'python:3.9'
     entrypoint: 'python'
-    args: ['-m', 'unittest', 'discover', 'tests']
+    args: ['-m', 'unittest', '--verbose']
 
   - id: 'deploy'
     name: 'python:3.9'

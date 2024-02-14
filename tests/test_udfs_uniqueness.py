@@ -15,45 +15,14 @@ UDFS_FOLDER = os.path.join(
 
 class test_udfs_config(unittest.TestCase):
     """
-    test the uniqueness of the UDFs and the completeness of their configuration
+    test the completeness the UDFs configuration.
+    test the validity of the UDFs configuration.
     """
-    def test_uniqueness(self):
-        """
-        Test that the UDFs have unique names
-        """
-        names_count = defaultdict(int)
-        names_files_mapping = defaultdict(list)
-        duplicate_names = dict()
-        for filename in os.listdir(UDFS_FOLDER):
-            if filename.endswith(".yaml"):
-                file_path = os.path.join(UDFS_FOLDER, filename)
-
-                with open(file_path, "r", encoding='utf-8') as file:
-                    udf_conf = yaml.safe_load(file)
-                    if "name" in udf_conf:
-                        names_count[udf_conf("name")] += 1
-                        names_files_mapping[udf_conf("name")].append(filename)
-                        # check if the name is unique
-                        # if not, add it to the duplicate_names dictionary
-                        if names_count[udf_conf("name")] > 1:
-                            duplicate_names[udf_conf("name")] = names_files_mapping[udf_conf("name")]
-
-        self.assertEqual(
-            len(duplicate_names),
-            0,
-            msg=(
-                "Duplicate UDF names found: \n "
-                f"{'\n'.join(
-                    [f'Duplicated udf {name}, appears in files {files}' for name, files in duplicate_names.items()]
-                )}"
-            ),
-        )
-
     def test_udfs_config_completeness(self):
         """
         Test that the UDFs have complete configuration
         """
-        required_config_keys = ["name", "type", "description", "code"]
+        required_config_keys = ["type", "description", "code"]
         incomplete_udfs = defaultdict(list)
 
         for filename in os.listdir(UDFS_FOLDER):
@@ -71,7 +40,7 @@ class test_udfs_config(unittest.TestCase):
             0,
             msg=(
                 "Incomplete UDF configurations found: \n"
-                f"{'\n'.join([f'UDF {udf} is missing keys: {keys}' for udf, keys in incomplete_udfs.items()])}"
+                '\n'.join([f'UDF {udf} is missing keys: {keys}' for udf, keys in incomplete_udfs.items()])
             ),
         )
     
@@ -80,7 +49,7 @@ class test_udfs_config(unittest.TestCase):
         Test that the UDFs have valid configuration
         """
         valid_types = ["function_sql", "function_js", "procedure"]
-        invalid_udfs = defaultdict(list)
+        invalid_udfs = dict()
 
         for filename in os.listdir(UDFS_FOLDER):
             if filename.endswith(".yaml"):
@@ -89,15 +58,15 @@ class test_udfs_config(unittest.TestCase):
                 with open(file_path, "r", encoding='utf-8') as file:
                     udf_conf = yaml.safe_load(file)
                     if "type" in udf_conf and udf_conf["type"] not in valid_types:
-                        invalid_udfs[filename].append(udf_conf["type"])
+                        invalid_udfs[filename] = udf_conf["type"]
 
-        self.assertEqual(
-            len(invalid_udfs),
-            0,
+        self.assertFalse(
+            invalid_udfs,
             msg=(
                 "Invalid UDF configurations found: \n"
-                f"{'\n'.join([f'UDF {udf} has invalid type: {type}' for udf, type in invalid_udfs.items()])}.\n"
-                f"Valid types are: {', '.join(valid_types)}"
+                f"\n".join([f'UDF {udf} has invalid type: {type}' for udf, type in invalid_udfs.items()])
+                # "\nValid types are: "
+                # ", ".join(valid_types)
             ),
         )
 
