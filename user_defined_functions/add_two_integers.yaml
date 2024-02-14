@@ -1,7 +1,9 @@
 type: function_sql
-description: add four to an int
+description: add two numbers
 arguments:
   - name: x
+    type: int64
+  - name: y
     type: int64
 output:
   name: plus_four
@@ -10,11 +12,18 @@ examples:
   - description: ""
     arguments:
       - "5"
+      - "4"
     output: "9"
-code: x + 4
+code: x + y
 tests:
   - - 4
     - 8
+    - 12
 
   - - 5
-    - 9
+    - 1
+    - 6
+
+  - - 1
+    - 1
+    - 2

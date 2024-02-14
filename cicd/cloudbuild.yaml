@@ -4,6 +4,11 @@ steps:
     entrypoint: 'pip'
     args: ['install', '-r', 'requirements.txt', '--user']
 
+  - id: 'test'
+    name: 'python:3.9'
+    entrypoint: 'python'
+    args: ['-m', 'unittest', 'discover', 'tests']
+
   - id: 'deploy'
     name: 'python:3.9'
     entrypoint: 'python'
