@@ -1,7 +1,5 @@
 type: function_sql
-description: |
-  Return square root of 
-  an int
+description: Return square root of an int
 arguments:
   - name: x
     type: int64
