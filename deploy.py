@@ -50,7 +50,6 @@ def deploy_udf(udf_name, project, dataset_name, bigquery_client):
     query = template.render(**conf)
 
     # execute the query to create the udf
-    logging.info(f'Creating function {udf_name} in dataset {fully_qualified_dataset}')
     logging.info(
         'Creating function %s in dataset %s',
         udf_name,
