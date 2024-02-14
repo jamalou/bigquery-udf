@@ -12,4 +12,4 @@ steps:
   - id: 'deploy'
     name: 'python:3.9'
     entrypoint: 'python'
-    args: ['deploy.py', '$_PROJECT', '$DATASET']
+    args: ['deploy.py', '$_PROJECT', '$_DATASET']
