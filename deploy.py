@@ -39,7 +39,7 @@ def deploy_udf(udf_name, project, dataset_name, bigquery_client):
         template = jinja2.Template(file.read())
 
     query = template.render(**conf)
-    return query
+
     # execute the query to create the udf
     logging.info(f'Creating function {udf_name} in dataset {fully_qualified_dataset}')
     bigquery_client.query(query).result()
@@ -57,8 +57,10 @@ def deploy_all_udfs(project, dataset_name):
 
     for filename in os.listdir('user_defined_functions'):
         if filename.endswith('.yaml'):
-            udf_name = filename.replace('.yaml', '')
-            print(deploy_udf(udf_name, project, dataset_name, bigquery_client))
+            # remove the file extension
+            udf_name = os.path.splitext(filename)[0]
+            # deploy the udf
+            deploy_udf(udf_name, project, dataset_name, bigquery_client)
 
 
 def main():
