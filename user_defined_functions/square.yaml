@@ -1,0 +1,16 @@
+type: function_sql
+description: |
+  Return square root of 
+  an int
+arguments:
+  - name: x
+    type: int64
+output:
+  name: square
+  type: int64
+examples:
+  - description: ""
+    arguments:
+      - "5"
+    output: "25"
+code: x * x

@@ -12,7 +12,4 @@ steps:
   - id: 'deploy'
     name: 'python:3.9'
     entrypoint: 'python'
-    args: ['deploy_udf.py']
-
-# options:
-#   logging: CLOUD_LOGGING_ONLY
+    args: ['deploy.py', '$_PROJECT', '$DATASET']
