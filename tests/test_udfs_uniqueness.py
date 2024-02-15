@@ -13,7 +13,7 @@ UDFS_FOLDER = os.path.join(
     'user_defined_functions',
 )
 
-class test_udfs_config(unittest.TestCase):
+class TestUDFConfig(unittest.TestCase):
     """
     test the completeness the UDFs configuration.
     test the validity of the UDFs configuration.

@@ -12,3 +12,9 @@ examples:
       - "5"
     output: "25"
 code: x * x
+tests:
+  - - 4
+    - 16
+
+  - - 5
+    - 25
