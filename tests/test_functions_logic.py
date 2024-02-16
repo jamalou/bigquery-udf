@@ -114,7 +114,7 @@ def generate_test_function(udf_name):
         query = (
             f"{temp_function_query}"
             f"{cte} SELECT *, "
-            f"{udf_name}({','.join([name for name,_ in args_info])})"
+            f"{udf_name}({','.join([name for name,_ in args_info])})" "as function_output\n"
             "\nfrom test_data\n"
             f"where {udf_name}({','.join([name for name,_ in args_info])}) <> {output_info[0]}"
         )
