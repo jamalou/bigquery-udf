@@ -11,7 +11,7 @@ UDFS_FOLDER = os.path.join(
     '..',
     'user_defined_functions',
 )
-REQUIRED_CONFIG_KEYS = ["type", "description", "code", "tests"]
+REQUIRED_CONFIG_KEYS = ["type", "description", "code", "tests", "arguments", "output"]
 VALID_TYPES = ["function_sql", "function_js", "procedure"]
 
 
@@ -70,6 +70,21 @@ def generate_type_validity_test(udf_name, udf_file_path, valid_types):
                     f"{udf_conf.get('type') if udf_conf.get('type') else 'No type was provided'}"
                 ),
             )
+    return test_type_validity
+
+
+def generate_udf_test_existence_test(udf_name):
+    """
+    Generate a test case for a specific function
+    :param udf_name: The name of the function
+    :return: test_type_validity: a test case that checks if the function's type
+    is in the list of valid types
+    """
+    def test_type_validity(self):
+        self.assertTrue(
+            os.path.exists(os.path.join(UDFS_FOLDER, f"{udf_name}.json")),
+            msg=(f"UDF `{udf_name}` test file does not exist."),
+        )
     return test_type_validity
 
 
