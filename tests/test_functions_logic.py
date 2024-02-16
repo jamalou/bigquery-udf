@@ -28,7 +28,7 @@ class TestFunctionsLogic(unittest.TestCase):
 
     The class does not contain any test cases, but it will be populated with test cases.
     """
-    def format_bigquery_result(result):
+    def format_bigquery_result(self, result):
         column_headers = [field.name for field in result.schema]
         formatted_string = '\t'.join(column_headers) + '\n'
 
