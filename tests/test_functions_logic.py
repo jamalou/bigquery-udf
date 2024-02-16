@@ -122,7 +122,7 @@ def generate_test_function(udf_name):
         bigquery_client = bigquery.Client()
         result = bigquery_client.query(query).result()
         self.assertFalse(
-            result,
+            result.total_rows,
             msg=(
                 f"Test for {udf_name} failed"
                 f"{self.format_bigquery_result(result)}"
