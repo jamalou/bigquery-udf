@@ -125,6 +125,7 @@ def generate_test_function(udf_name):
             result.total_rows,
             msg=(
                 f"Test for {udf_name} failed"
+                "The following test cases failed: \n"
                 f"{self.format_bigquery_result(result)}"
             )
         )
