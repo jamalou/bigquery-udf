@@ -220,7 +220,7 @@ class UserDefinedFunction():
 
         if self.udf_name in deployed_udfs:
             # raise an error for circular dependencies
-            raise ValueError(f"UDF {udf_name} has circular dependencies")
+            raise ValueError(f"UDF {self.udf_name} has circular dependencies")
 
         # now deploy the udf
         query = self.render_function_template()
@@ -286,6 +286,7 @@ class UserDefinedFunction():
         :param test: The test dictionary that contains the test name, path, query and throws_exception
         :return: A test case for the UDF
         """
+        print(test["query"])
         def test_case(self):
             """
             Test the UDF with the test entries
