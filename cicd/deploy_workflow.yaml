@@ -9,7 +9,7 @@ steps:
     entrypoint: 'bash'
     args:
       - '-c'
-      - 'echo "export _ENV=$_ENV" >> $BASH_ENV'
+      - "export _ENV=$_ENV"
 
   - id: 'test'
     name: 'python:3.9'
