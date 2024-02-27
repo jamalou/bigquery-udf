@@ -1,0 +1,28 @@
+function_type: function_sql
+project: manifest-canto-413823
+dataset: udf
+description: Return square root of an int
+arguments:
+  - name: x
+    type: int64
+  - name: y
+    type: float64
+output:
+  name: foo
+  type: ANY TYPE
+examples:
+  - description: ""
+    arguments:
+      - "5"
+    output: "25"
+code: |
+  (
+    SELECT {{ ref("square", env=env) }}(max(x)) * y
+    FROM `some-project-{{ env }}.dataset.table`
+  )
+tests:
+  - description: simple_test
+    file: foo_simple_test.json
+  # - description: simple_test
+  #   file: foo_simple_test.csv
+  #   throws_exception: "Invalid input"
