@@ -1,0 +1,102 @@
+{
+    "type": "dict",
+    "required": true,
+    "attributes": {
+        "function_type": {
+            "required": true,
+            "type": "str",
+            "valid_values": ["function_sql", "function_js", "procedure"]
+        },
+        "description": {
+            "required": true,
+            "type": "str"
+        },
+        "arguments": {
+            "required": false,
+            "type": "list",
+            "list_item": {
+                "type": "dict",
+                "attributes": {
+                    "name": {
+                        "required": true,
+                        "type": "str"
+                    },
+                    "type": {
+                        "required": true,
+                        "type": "str"
+                    }
+                }
+            }
+        },
+        "output": {
+            "required": true,
+            "type": "dict",
+            "attributes": {
+                "name": {
+                    "required": false,
+                    "type": "str"
+                },
+                "type": {
+                    "required": true,
+                    "type": "str"
+                }
+            }
+        },
+        "examples": {
+            "required": false,
+            "type": "list",
+            "list_item": {
+                "type": "dict",
+                "attributes": {
+                    "description": {
+                        "required": false,
+                        "type": "str"
+                    },
+                    "arguments": {
+                        "required": false,
+                        "type": "list",
+                        "list_item": {
+                            "type": "str"
+                        }
+                    },
+                    "output": {
+                        "required": true,
+                        "type": "str"
+                    }
+                }
+            }
+        },
+        "code": {
+            "required": true,
+            "type": "str"
+        },
+        "dependencies": {
+            "required": false,
+            "type": "list",
+            "list_item": {
+                "type": "str"
+            }
+        },
+        "tests": {
+            "required": true,
+            "type": "list",
+            "list_item": {
+                "type": "dict",
+                "attributes": {
+                    "description": {
+                        "required": true,
+                        "type": "str"
+                    },
+                    "file": {
+                        "required": true,
+                        "type": "str"
+                    },
+                    "throws_exception": {
+                        "required": false,
+                        "type": "str"
+                    }
+                }
+            }
+        }
+    }
+}

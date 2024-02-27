@@ -1,0 +1,22 @@
+steps:
+  - id: 'install requirements'
+    name: 'python:3.9'
+    entrypoint: 'pip'
+    args: ['install', '-r', 'requirements.txt', '--user']
+
+  - id: 'set environment variable'
+    name: 'python:3.9'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - 'echo "export _ENV=$_ENV" >> $BASH_ENV'
+
+  - id: 'test'
+    name: 'python:3.9'
+    entrypoint: 'python'
+    args: ['-m', 'unittest', '--verbose']
+
+  - id: 'deploy'
+    name: 'python:3.9'
+    entrypoint: 'python'
+    args: ['deploy.py', '--env', '$_ENV']

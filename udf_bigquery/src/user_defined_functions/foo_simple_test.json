@@ -1,0 +1,10 @@
+[
+    {"args": [1, 9], "output": 1},
+    {"args": [2, 9], "output": 2},
+    {"args": [3, 9], "output": 3},
+    {"args": [4, 9], "output": 5},
+    {"args": [5, 9], "output": 8},
+    {"args": [6, 9], "output": 13},
+    {"args": [7, 9], "output": 21},
+    {"args": [8, 9], "output": 34}
+]

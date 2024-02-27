@@ -1,0 +1,20 @@
+function_type: function_sql
+project: manifest-canto-413823
+dataset: udf
+description: Return double of an int
+arguments:
+  - name: x
+    type: int64
+output:
+  name: square
+  type: int64
+examples:
+  - description: ""
+    arguments:
+      - "5"
+    output: "25"
+code: x + x
+tests:
+  - description: simple_test
+    file: plus_simple_test.json
+    throws_exception: "Invalid input"

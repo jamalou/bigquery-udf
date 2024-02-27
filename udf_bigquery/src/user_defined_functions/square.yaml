@@ -1,4 +1,6 @@
-type: function_sql
+function_type: function_sql
+project: manifest-canto-413823
+dataset: udf
 description: Return square root of an int
 arguments:
   - name: x
@@ -11,10 +13,8 @@ examples:
     arguments:
       - "5"
     output: "25"
-code: x * x
+code: |
+  {{ ref("plus", env=env) }}(x) * {{ ref("minus", env=env) }}(x)
 tests:
-  - - 4
-    - 16
-
-  - - 5
-    - 25
+  - description: simple_test
+    file: square.json
